@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+
+import 'package:url_launcher/url_launcher.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -22,13 +23,27 @@ class Home extends StatelessWidget {
               children: <Widget>[
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child:
-                      Container(height: 200.0, width: 200.0, color: Colors.red),
+                  child: Container(
+                    height: 200.0,
+                    width: 200.0,
+                    child: GestureDetector(
+                      onTap: _launchURL,
+                      child: Card(
+                        child: const Text(
+                          'VIDEO',
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    ),
+                  ),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Container(
-                      height: 200.0, width: 200.0, color: Colors.green),
+                    height: 200.0,
+                    width: 200.0,
+                    child: Card(),
+                  ),
                 ),
               ],
             ),
@@ -36,13 +51,19 @@ class Home extends StatelessWidget {
               children: <Widget>[
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child:
-                      Container(height: 200.0, width: 200.0, color: Colors.red),
+                  child: Container(
+                    height: 200.0,
+                    width: 200.0,
+                    child: Card(),
+                  ),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Container(
-                      height: 200.0, width: 200.0, child: Card(),),
+                    height: 200.0,
+                    width: 200.0,
+                    child: Card(),
+                  ),
                 ),
               ],
             ),
@@ -50,5 +71,14 @@ class Home extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  _launchURL() async {
+    const url = 'https://flutter.io';
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 }

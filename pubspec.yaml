@@ -4,7 +4,7 @@ description: Take your design up a notch and learn to use our advanced component
 dependencies:
   flutter:
     sdk: flutter
-
+  url_launcher: ^5.0.2
   cupertino_icons: ^0.1.2
   intl: ^0.15.7
   scoped_model: ^0.3.0
